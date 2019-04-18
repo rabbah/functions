@@ -26,6 +26,12 @@ function main(args) {
   let fileSrc = '/tmp/image-src.dat'
   let fileDst = '/tmp/image-dst.dat'
 
+  if (url == 'undefined') {
+      return {
+        error: 'You did not provide a URL.'
+      }
+  }
+
   return request('get', url)
   .then(response => {
     fs.writeFileSync(fileSrc, response.body)
