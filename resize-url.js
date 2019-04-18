@@ -28,7 +28,7 @@ function main(args) {
 
   if (url == 'undefined') {
       return {
-        error: 'You did not provide a URL.'
+        body: 'You did not provide a URL.'
       }
   }
 
