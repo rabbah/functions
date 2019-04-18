@@ -26,7 +26,7 @@ function main(args) {
   let fileSrc = '/tmp/image-src.dat'
   let fileDst = '/tmp/image-dst.dat'
 
-  if (url == 'undefined') {
+  if (url == undefined) {
       return {
         body: 'You did not provide a URL.'
       }
