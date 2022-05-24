@@ -1,0 +1,12 @@
+{
+  "name": "sharp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.js",
+  "dependencies": {
+    "sharp": "^0.30.5"
+  },
+  "devDependencies": {
+    "axios": "^0.27.2"
+  }
+}

@@ -1,0 +1,10 @@
+packages:
+  - name: sample
+    actions:
+      - name: hello
+        runtime: 'nodejs:default'
+        web: true
+        limits:
+          memory: 1024
+          timeout: 5000
+ 
