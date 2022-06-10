@@ -1,0 +1,7 @@
+packages:
+  - name: auth
+    actions:
+      - name: hello
+        runtime: 'nodejs:default'
+        web: true
+        webSecure: ${SECRET}
