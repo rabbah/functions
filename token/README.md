@@ -1,5 +1,5 @@
 An example function that is secured with a bearer token. The token may be an OAuth bearer token or JWT.
-In this example the bearer token is provided as an environment variable called `SECRET` specified at deploy time.
+In this example the bearer token secret value is configured as an environment variable called `SECRET` specified at deploy time.
 
 ```bash
 export SECRET=letmein
