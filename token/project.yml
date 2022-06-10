@@ -1,0 +1,9 @@
+environment:
+  SECRET: ${SECRET}
+
+packages:
+  - name: token
+    actions:
+      - name: hello
+        runtime: 'nodejs:default'
+        web: true
