@@ -2,7 +2,7 @@
 
 #### Resize an image
 
-[resize.js](resize.js) is a function to resize an image, using [gm](https://www.npmjs.com/package/gm).
+[resize-url.js](resize-url.js) is a function to resize an image, using [gm](https://www.npmjs.com/package/gm).
 
 The function expects the following parameters:
  * `img` the image as base64 encoded string
