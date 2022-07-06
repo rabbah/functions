@@ -1,0 +1,6 @@
+packages:
+  - name: echo 
+    actions:
+      - name: hello
+        runtime: 'nodejs:default'
+        environment: $(MYAPP_URL)
