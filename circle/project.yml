@@ -1,0 +1,5 @@
+packages:
+  - name: area
+    actions:
+      - name: circle
+        runtime: nodejs:18
