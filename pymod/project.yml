@@ -1,0 +1,6 @@
+packages:
+  - name: py
+    actions:
+      - name: add
+        runtime: 'python:default'
+        web: true
