@@ -1,0 +1,6 @@
+packages:
+  - name: default
+    actions:
+      - name: canirequire
+        limits:
+          timeout: 10000

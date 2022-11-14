@@ -1,0 +1,143 @@
+<html lang="en" ng-app="catalogApp">
+
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    @import url(//fonts.googleapis.com/css?family=Raleway);
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    .col-md-3 {
+      padding: 5px;
+    }
+
+    table {
+      font-size: 13px;
+    }
+
+    .navbar {}
+
+    .navbar-default .navbar-brand,
+    .navbar-default .navbar-nav>li>a {}
+
+    .search-title {
+      font-size: 14px;
+      vertical-align: top;
+      padding-right: 10px;
+      padding-top: 5px;
+      text-align: right;
+    }
+
+    .search-body {
+      margin-top: 10px;
+    }
+
+    .search-input {
+      padding-top: 8px;
+    }
+
+    footer {
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      background-color: rgb(248, 248, 248);
+      color: #888;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-top: 1px solid rgba(0, 0, 0, .075);
+    }
+    .panel.panel-default.module{
+      word-break: break-all;
+    }
+  </style>
+  <title>Can I require? - Search pre-installed node modules for
+  Node.js on DigitalOcean Functions</title>
+</head>
+
+<body ng-controller="MainController" ng-cloak>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="row">
+        <form role="search">
+          <div class="form-group search-input">
+            <a class="navbar-brand" href="#">Which node modules are
+            pre-installed for Node.js on DigitalOcean Functions?</a>
+            <input type="text" class="form-control" placeholder="e.g. request" ng-model="searchText" autofocus>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="pull-right">
+      <b>{{modules.length}}</b> modules available<span ng-if="filteredModules.length != modules.length">,
+        found <b>{{filteredModules.length}}</b> modules</span>
+    </h2>
+    <h2>Node Version: {{version}}</h2>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3" ng-repeat-start="module in (filteredModules = (modules | filter:searchText))">
+        <div class="panel panel-default module">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{module.name}}</h3>
+          </div>
+          <div class="panel-body">
+            <p class="module-version">
+              {{module.version}}
+            </p>
+            <p class="module-require">
+              <code>require('{{module.name}}')</code>
+            </p>
+          </div>
+          <div class="panel-footer">
+            <a ng-if="module.version=='native'" class="btn btn-sm btn-info"
+              href="https://nodejs.org/docs/{{version}}/api/{{module.name}}.html">Node {{version}} Docs</a>
+            <a ng-if="module.version!='native'" class="btn btn-sm btn-info" href="{{module.homepage}}">Homepage</a>
+            <a ng-if="module.version!='native'" class="btn btn-sm btn-info"
+              href="https://www.npmjs.com/package/{{module.name}}">Package</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix" ng-if="$index%4==3"></div>
+      <div ng-repeat-end=""></div>
+    </div>
+  </div>
+
+  <footer>
+    adapted from <a href="https://github.com/tehsis/webtaskio-canirequire">this app</a>
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script>
+    const catalogApp = angular.module('catalogApp', [])
+
+    catalogApp.controller('MainController', function ($scope, $http) {
+      console.info("Initializing MainController")
+      $scope.links = []
+
+      $http.get("/api/default/canirequire").success(function (result) {
+        $scope.version = result.node_version
+        $scope.modules = result.modules
+      })
+    })
+  </script>
+</body>
+
+</html>
